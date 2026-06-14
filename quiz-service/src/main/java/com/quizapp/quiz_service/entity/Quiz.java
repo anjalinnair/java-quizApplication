@@ -1,4 +1,4 @@
-package com.quizapp.quiz_service.model;
+package com.quizapp.quiz_service.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -16,5 +16,4 @@ public class Quiz {
 
     @ElementCollection
     private List<Integer> questionIds;
-
 }

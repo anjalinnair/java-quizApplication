@@ -1,7 +1,7 @@
 package com.quizapp.question_service.dao;
 
 
-import com.quizapp.question_service.model.Question;
+import com.quizapp.question_service.entity.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
