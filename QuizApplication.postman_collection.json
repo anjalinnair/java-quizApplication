@@ -1,0 +1,406 @@
+{
+  "info": {
+    "_postman_id": "c1a6b0c2-555e-49fb-992a-3c2d6f78f8cb",
+    "name": "Java Quiz Application Microservices",
+    "description": "API collection for testing the Java Quiz Application microservices routed through the API Gateway, including Bearer token authentication.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Question Service",
+      "item": [
+        {
+          "name": "Get All Questions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/question/allQuestions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "question",
+                "allQuestions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Questions By Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/question/category/Java",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "question",
+                "category",
+                "Java"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Question By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/question/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "question",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Question",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questionTitle\": \"What is the size of int in Java?\",\n  \"option1\": \"1 byte\",\n  \"option2\": \"2 bytes\",\n  \"option3\": \"4 bytes\",\n  \"option4\": \"8 bytes\",\n  \"rightAnswer\": \"4 bytes\",\n  \"difficultyLevel\": \"Easy\",\n  \"category\": \"Java\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/question/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "question",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Question",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questionTitle\": \"What is the size of double in Java?\",\n  \"option1\": \"2 bytes\",\n  \"option2\": \"4 bytes\",\n  \"option3\": \"8 bytes\",\n  \"option4\": \"16 bytes\",\n  \"rightAnswer\": \"8 bytes\",\n  \"difficultyLevel\": \"Easy\",\n  \"category\": \"Java\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/question/update/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "question",
+                "update",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Question",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/question/delete/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "question",
+                "delete",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Generate Quiz Question IDs (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/question/generate?categoryName=Java&numQuestions=5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "question",
+                "generate"
+              ],
+              "query": [
+                {
+                  "key": "categoryName",
+                  "value": "Java"
+                },
+                {
+                  "key": "numQuestions",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Questions From IDs (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  1,\n  2,\n  3\n]"
+            },
+            "url": {
+              "raw": "http://localhost:8080/question/getQuestions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "question",
+                "getQuestions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Score (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": 1,\n    \"response\": \"4 bytes\"\n  },\n  {\n    \"id\": 2,\n    \"response\": \"JVM\"\n  }\n]"
+            },
+            "url": {
+              "raw": "http://localhost:8080/question/getScore",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "question",
+                "getScore"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Quiz Service",
+      "item": [
+        {
+          "name": "Create Quiz",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categoryName\": \"Java\",\n  \"numQuestions\": 5,\n  \"title\": \"Java Basics Quiz\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/quiz/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "quiz",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Quizzes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/quiz/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "quiz",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Quiz Questions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/quiz/get/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "quiz",
+                "get",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Submit Quiz Answers",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": 1,\n    \"response\": \"4 bytes\"\n  },\n  {\n    \"id\": 2,\n    \"response\": \"JVM\"\n  }\n]"
+            },
+            "url": {
+              "raw": "http://localhost:8080/quiz/submit/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "quiz",
+                "submit",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Quiz",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/quiz/delete/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "quiz",
+                "delete",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "secret-quiz-token-2026",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
