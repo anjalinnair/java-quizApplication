@@ -13,15 +13,16 @@ This repository contains a **Quiz Application** developed using **Spring Boot** 
 ### 2. API Gateway
 - Serves as the single entry point for client requests.
 - Routes requests to appropriate microservices.
-- Handles cross-cutting concerns such as authentication, logging, and rate limiting.
+- Enforces security constraints by validating incoming API requests using a custom authentication filter.
 
 ### 3. Question Service
 - Manages the creation, storage, and retrieval of quiz questions.
-- Provides endpoints for adding new questions and fetching existing ones.
+- Provides endpoints for adding, updating, retrieving, and deleting questions.
+- Employs strict DTO mappings to prevent database entities and correct answers from leaking to clients.
 
 ### 4. Quiz Service
 - Orchestrates the quiz-taking process.
-- Integrates with the Question Service to present questions to users.
+- Integrates with the Question Service to present questions to users and calculate scores.
 - Handles user responses and maintains the flow of the quiz.
 
 ---
@@ -36,36 +37,52 @@ This repository contains a **Quiz Application** developed using **Spring Boot** 
 - **Centralized Routing**  
   The API Gateway manages all incoming requests, directing them to the appropriate service and handling common concerns.
 
+- **Security & Authentication**  
+  Implemented global request authentication at the API Gateway using a Bearer token verification filter. Clients must provide the token in request headers to access routed endpoints.
+
+- **Layered Clean Architecture**  
+  Strictly separates the JPA Database Entities from Data Transfer Objects (DTOs) to enforce decoupling and prevent security exposure of correct answers.
+
+---
+
+## Security Configuration
+All HTTP requests routed through the API Gateway (port `8080`) must include the following Authorization header:
+*   **Header Key**: `Authorization`
+*   **Header Value**: `Bearer secret-quiz-token-2026`
+
 ---
 
 ## Technology Stack
 - **Spring Boot**: Framework for building the microservices.
-- **Spring Cloud**: Tools for service discovery, routing, and cloud-native patterns.
-- **Java**: The primary programming language.
+- **Spring Cloud**: Tools for service discovery, routing (Spring Cloud Gateway), and cloud-native patterns (OpenFeign).
+- **Java**: The primary programming language (Java 21).
+- **PostgreSQL**: Database for persisting quiz definitions and questions.
 
 ---
 
 ## How to Run
 1. Clone the repository:
    ```bash
-   git clone https://github.com/anjali13nair/java-quizApplication.git
+   git clone https://github.com/anjalinnair/java-quizApplication.git
+   ```
 
 2. Navigate to each service directory and build the services:
-    ```bash
-      mvn clean install
+   ```bash
+   mvn clean install
+   ```
 
 3. Start the services in the following order:
--Service Registry
--API Gateway
--Question Service
--Quiz Service
+   - Service Registry (Port `8761`)
+   - API Gateway (Port `8080`)
+   - Question Service (Port `8081`)
+   - Quiz Service (Port `8090`)
 
 4. Access the application through the API Gateway URL.
 
+---
 
 ## Contact
 If you have any questions, suggestions, or feedback, feel free to reach out:  
-- **GitHub**: [@anjali13nair](https://github.com/anjali13nair)
+- **GitHub**: [@anjalinnair](https://github.com/anjalinnair)
 - **Email**: anjalinnair13@gmail.com
-- **LinkedIn**:[Anjali Nair](https://www.linkedin.com/in/anjalinnair13/)
-
+- **LinkedIn**: [Anjali Nair](https://www.linkedin.com/in/anjalinnair13/)
